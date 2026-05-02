@@ -15,6 +15,8 @@ Kumpulan kode dibagi ke dalam beberapa folder berdasarkan pertemuan/modul prakti
 *   **`quiz_p7/`** & **`quiz_p7_praktikum/`**: Berisi studi kasus kuis pertemuan 7 yang mencakup *Encapsulation*, *Inner Class*, *Inheritance*, dan *Polymorphism*.
     *   **Soal 1**: Sistem Manajemen Perpustakaan Digital (Class `Buku`, `BukuElektronik`, `Pengguna`).
     *   **Soal 2**: Sistem Manajemen Kendaraan Parkir (Class `Kendaraan`, `Mobil`, `Motor`).
+*   **`UTS_PBO/`**: Berisi soal, jawaban analisis, dan kode UTS PBO (Soal 1: E-Learning, Soal 2: Refactored).
+*   **`UTS_PRAK_PBO/`**: Berisi soal, jawaban, dan kode UTS Praktikum PBO (Soal 1: Karyawan, Soal 2: Mahasiswa, Soal 3: Sistem Manajemen, Soal 4: Perpustakaan).
 
 ## Konsep OOP yang Diterapkan
 
