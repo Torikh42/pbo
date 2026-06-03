@@ -18,7 +18,8 @@ Kumpulan kode dibagi ke dalam beberapa folder berdasarkan pertemuan/modul prakti
 *   **`UTS_PBO/`**: Berisi soal, jawaban analisis, dan kode UTS PBO (Soal 1: E-Learning, Soal 2: Refactored).
 *   **`UTS_PRAK_PBO/`**: Berisi soal, jawaban, dan kode UTS Praktikum PBO (Soal 1: Karyawan, Soal 2: Mahasiswa, Soal 3: Sistem Manajemen, Soal 4: Perpustakaan).
 *   **`p9/`**: Materi praktikum pertemuan 9 mengenai **Polimorfisme** (*Method Overriding*) dengan studi kasus sistem serangan musuh (*Enemy*).
-
+*   **`p11/`**: Materi praktikum pertemuan 11 mengenai **Abstract Class** dan **Interface** dengan studi kasus manajemen `Pekerja` (Tetap dan Lepas).
+*   **`p13/`**: Materi praktikum pertemuan 13 mengenai **Graphical User Interface (GUI)** menggunakan Java Swing (contoh: Kalkulator, Hitung Volume, Form Login).
 
 ## Konsep OOP yang Diterapkan
 
@@ -30,6 +31,8 @@ Selama praktikum ini, beberapa konsep utama Pemrograman Berorientasi Objek telah
 4.  **Polymorphism**: Kemampuan sebuah method untuk memiliki bentuk implementasi yang berbeda-beda (*Method Overriding*).
 5.  **Inner Class**: Pengelompokan class yang secara logis saling terkait di dalam class lain.
 6.  **Delegation**: Penyerahan tugas dari satu objek ke objek lain yang lebih berhak menanganinya (contoh: Pengguna meminjam Buku).
+7.  **Abstract Class & Interface**: Pembuatan cetak biru abstrak untuk diimplementasikan secara spesifik oleh *subclass*.
+8.  **GUI (Graphical User Interface)**: Pembuatan antarmuka visual menggunakan pustaka Swing.
 
 ## Cara Menjalankan
 
