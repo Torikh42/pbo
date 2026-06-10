@@ -77,17 +77,8 @@ FINPRO_PBO/
     ├── database/
     │   ├── Koneksi.java             # Class koneksi JDBC
     │   ├── SetupDatabase.java       # Pembuat skema & dummy data
+    │   ├── DbCRUD.java              # Logika database raw query (CRUD)
     │   └── TestCRUD.java            # CLI Test untuk memverifikasi CRUD (Anggota 2)
-    ├── model/
-    │   ├── User.java                # Model User
-    │   ├── ItemKoleksi.java         # Abstract base class untuk item hobi
-    │   ├── Manga.java               # Subclass Manga (Inheritance)
-    │   ├── ActionFigure.java        # Subclass Action Figure (Inheritance)
-    │   └── Rental.java              # Model Transaksi Rental
-    └── dao/
-        ├── UserDAO.java             # Logika database untuk tabel User
-        ├── KoleksiDAO.java          # Logika database untuk tabel Koleksi
-        └── RentalDAO.java           # Logika database untuk tabel Rental
 ```
 
 ### 3. Inisialisasi Database (Membuat Tabel & Dummy Data)
@@ -103,8 +94,8 @@ java -cp "bin;lib/*" database.SetupDatabase
 ### 4. Menguji Backend & CRUD (Verifikasi Anggota 2)
 Jalankan program pengujian otomatis CRUD untuk memastikan koneksi database dan query SQL berjalan dengan baik:
 ```bash
-# Compile semua file src/
-javac -cp ".;lib/*" -d bin src/database/*.java src/model/*.java src/dao/*.java
+# Compile semua file src/database/
+javac -cp ".;lib/*" -d bin src/database/*.java
 
 # Jalankan CLI Test
 java -cp "bin;lib/*" database.TestCRUD
@@ -113,6 +104,6 @@ java -cp "bin;lib/*" database.TestCRUD
 ---
 
 ## 🔒 Keamanan & Praktik Terbaik
-*   **Prepared Statements**: Seluruh operasi CRUD di dalam package `dao` menggunakan `PreparedStatement` untuk mencegah kerentanan SQL Injection.
+*   **Prepared Statements**: Seluruh operasi CRUD di dalam `DbCRUD.java` menggunakan `PreparedStatement` untuk mencegah kerentanan SQL Injection.
 *   **Koneksi Efisien**: Menutup resources (`Connection`, `PreparedStatement`, `ResultSet`) dengan menggunakan struktur *try-with-resources* di Java.
-*   **Separation of Concerns**: Memisahkan logika database (DAO) dari visualisasi (GUI) dan objek bisnis (Model).
+*   **Separation of Concerns**: Memisahkan logika database raw query (`DbCRUD`) agar tidak tercampur dengan urusan GUI (Anggota 3) atau arsitektur Class OOP (Anggota 4).
