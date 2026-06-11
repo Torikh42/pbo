@@ -4,3 +4,8 @@ bin/
 
 # Log files
 *.log
+
+# IDE files (VS Code & IntelliJ)
+.vscode/
+.idea/
+*.iml
