@@ -93,7 +93,8 @@ public class MainFrame extends JFrame {
         cardLayout = new CardLayout();
         mainContent = new JPanel(cardLayout);
 
-        InventarisPanel inventarisPanel = new InventarisPanel();
+        InventarisPanel inventarisPanel = new InventarisPanel(currentUser);
+
         RentalPanel rentalPanel = new RentalPanel();
 
         mainContent.add(inventarisPanel, "Inventaris");

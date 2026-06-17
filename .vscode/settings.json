@@ -1,0 +1,9 @@
+{
+    "java.project.referencedLibraries": [
+        "FINPRO_PBO/lib/**/*.jar"
+    ],
+    "java.project.sourcePaths": [
+        "FINPRO_PBO/src"
+    ],
+    "java.project.outputPath": "FINPRO_PBO/bin"
+}

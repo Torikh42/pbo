@@ -1,6 +1,7 @@
 package gui;
 
 import model.ItemKoleksi;
+import model.User;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -15,6 +16,7 @@ public class InventarisPanel extends JPanel {
     private JComboBox<String> cbKategori;
     private JButton btnSimpan, btnHapus, btnReset;
     private service.KoleksiService koleksiService;
+    private boolean isAdmin;
     
     private boolean isEditMode = false;
 
@@ -28,8 +30,9 @@ public class InventarisPanel extends JPanel {
     private final Font MAIN_FONT = new Font("Segoe UI", Font.PLAIN, 14);
     private final Font BOLD_FONT = new Font("Segoe UI", Font.BOLD, 14);
 
-    public InventarisPanel() {
+    public InventarisPanel(User user) {
         koleksiService = new service.KoleksiService();
+        isAdmin = "Admin".equalsIgnoreCase(user.getRole());
         setLayout(new BorderLayout(20, 20));
         setBackground(BG_COLOR);
         setBorder(new EmptyBorder(20, 20, 20, 20));
@@ -66,9 +69,9 @@ public class InventarisPanel extends JPanel {
             new EmptyBorder(20, 20, 20, 20)
         ));
 
-        JLabel lblTitle = new JLabel("Form Inventaris");
+        JLabel lblTitle = new JLabel(isAdmin ? "Form Inventaris" : "Detail Inventaris (View Only)");
         lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 18));
-        lblTitle.setForeground(TEXT_COLOR);
+        lblTitle.setForeground(isAdmin ? TEXT_COLOR : new Color(148, 163, 184));
         formContainer.add(lblTitle, BorderLayout.NORTH);
 
         JPanel formPanel = new JPanel(new GridBagLayout());
@@ -146,6 +149,22 @@ public class InventarisPanel extends JPanel {
         btnHapus.addActionListener(e -> deleteAction());
         btnReset.addActionListener(e -> resetForm());
         table.getSelectionModel().addListSelectionListener(e -> fillForm());
+
+        // RBAC: disable form for Staff
+        if (!isAdmin) {
+            txtId.setEditable(false);
+            txtJudul.setEditable(false);
+            txtHarga.setEditable(false);
+            txtStok.setEditable(false);
+            txtAtribut.setEditable(false);
+            cbKategori.setEnabled(false);
+            btnSimpan.setEnabled(false);
+            btnHapus.setEnabled(false);
+            btnSimpan.setBackground(new Color(203, 213, 225));
+            btnHapus.setBackground(new Color(203, 213, 225));
+            btnSimpan.setToolTipText("Hanya Admin yang dapat menyimpan data.");
+            btnHapus.setToolTipText("Hanya Admin yang dapat menghapus data.");
+        }
     }
 
     private JLabel createLabel(String text) {
