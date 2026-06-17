@@ -70,40 +70,47 @@ Kontainer akan berjalan di latar belakang pada port `3306` dengan username `root
 FINPRO_PBO/
 ├── docker-compose.yml
 ├── README.md
-├── Format Laporan Project Kelas A.pdf
 ├── lib/
-│   └── mysql-connector-j-x.x.x.jar  # Driver JDBC
+│   └── mysql-connector-j.jar        # Driver JDBC
+├── bin/                             # Folder hasil kompilasi (.class)
 └── src/
-    ├── database/
-    │   ├── Koneksi.java             # Class koneksi JDBC
-    │   ├── SetupDatabase.java       # Pembuat skema & dummy data
-    │   ├── DbCRUD.java              # Logika database raw query (CRUD)
-    │   └── TestCRUD.java            # CLI Test untuk memverifikasi CRUD (Anggota 2)
+    ├── model/                       # Class OOP (Inheritance, Polymorphism)
+    ├── repository/                  # Repository Layer (Logika eksekusi SQL)
+    ├── service/                     # Service Layer (Business Logic & Validasi)
+    ├── database/                    # Koneksi & Setup Database
+    └── gui/                         # Antarmuka Swing (JFrame, JPanel)
 ```
 
-### 3. Inisialisasi Database (Membuat Tabel & Dummy Data)
-Compile dan jalankan `SetupDatabase.java` untuk membuat struktur tabel dan mengisi beberapa data awal:
-```bash
-# Compile
+### 3. Inisialisasi Database
+Pastikan kontainer MySQL sudah berjalan, lalu jalankan perintah ini untuk membuat tabel dan data dummy:
+```powershell
+# Kompilasi
 javac -cp ".;lib/*" -d bin src/database/Koneksi.java src/database/SetupDatabase.java
 
-# Jalankan
+# Jalankan Setup
 java -cp "bin;lib/*" database.SetupDatabase
 ```
 
-### 4. Menguji Backend & CRUD (Verifikasi Anggota 2)
-Jalankan program pengujian otomatis CRUD untuk memastikan koneksi database dan query SQL berjalan dengan baik:
-```bash
-# Compile semua file src/database/
-javac -cp ".;lib/*" -d bin src/database/*.java
+### 4. Menjalankan Aplikasi Utama (GUI)
+Gunakan perintah berikut untuk mengompilasi seluruh proyek dan menjalankan layar Login:
+```powershell
+# Kompilasi seluruh file source
+javac -cp ".;lib/*" -d bin src/model/*.java src/repository/*.java src/service/*.java src/database/*.java src/gui/*.java
 
-# Jalankan CLI Test
-java -cp "bin;lib/*" database.TestCRUD
+# Jalankan Aplikasi (Login Screen)
+java -cp "bin;lib/*" gui.LoginFrame
 ```
 
 ---
 
+## 👥 Akun Demo (Default)
+Gunakan akun berikut untuk mencoba fitur login:
+*   **Admin**: `admin` / `admin123`
+*   **Staff**: `staff` / `staff123`
+
+---
+
 ## 🔒 Keamanan & Praktik Terbaik
-*   **Prepared Statements**: Seluruh operasi CRUD di dalam `DbCRUD.java` menggunakan `PreparedStatement` untuk mencegah kerentanan SQL Injection.
+*   **Prepared Statements**: Seluruh operasi CRUD di dalam `repository` menggunakan `PreparedStatement` untuk mencegah kerentanan SQL Injection.
 *   **Koneksi Efisien**: Menutup resources (`Connection`, `PreparedStatement`, `ResultSet`) dengan menggunakan struktur *try-with-resources* di Java.
-*   **Separation of Concerns**: Memisahkan logika database raw query (`DbCRUD`) agar tidak tercampur dengan urusan GUI (Anggota 3) atau arsitektur Class OOP (Anggota 4).
+*   **3-Tier Architecture (MVC)**: Proyek sudah memisahkan dengan tegas antara Tampilan Visual (`gui`), Aturan Bisnis dan Kalkulasi (`service`), dan Eksekusi Database (`repository`).
